@@ -1,6 +1,6 @@
 "use client"
 
-import { AnimationMode, Container, DestroyType, IOutModes, MoveDirection, OutMode, StartValueType } from "@tsparticles/engine";
+import { AnimationMode, Container, DestroyType, MoveDirection, OutMode, StartValueType } from "@tsparticles/engine";
 import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { useEffect, useMemo, useState } from "react";
 import { loadSlim } from "@tsparticles/slim";
@@ -10,8 +10,8 @@ import { loadLifeUpdater } from "@tsparticles/updater-life";
 import { loadBasic } from "@tsparticles/basic";
 
 
-const HyperspaceComponent = (props: any) => {
-    const [init, setInit] = useState(false)
+const HyperspaceComponent = (props: { id: string | undefined; }) => {
+    // const [init, setInit] = useState(false)
 
     useEffect(() => {
         initParticlesEngine(async (engine) => {
@@ -22,8 +22,6 @@ const HyperspaceComponent = (props: any) => {
             await loadEmittersShapeSquare(engine, false);
             await loadLifeUpdater(engine, false);
 
-        }).then(() => {
-            setInit(true)
         })
     }, [])
 
@@ -110,7 +108,7 @@ const HyperspaceComponent = (props: any) => {
             },
             callbacks: {
                 onUpdate: (engine: any) => {
-                    engine.particles.forEach((particle :any) => {
+                    engine.particles.forEach((particle: { move: { speed: number; }; }) => {
                         // Increase speed over time (adjust 0.01 as needed)
                         particle.move.speed += 0.1;
 
