@@ -16,8 +16,12 @@ export default function Home() {
   return (
     <div className="relative min-h-screen overflow-hidden">
       <div className="relative z-10">
-        <MemoizedParticlesComponent id="hyperspace"/>
+        <MemoizedParticlesComponent id="hyperspace" />
+        <div className="px-4 absolute text-white top-0 left-0 w-full min-h-screen flex flex-col items-center justify-center">
+          <p className="text-white">Welcome to the future</p>
+        </div>
       </div>
+
     </div>
   );
 }
