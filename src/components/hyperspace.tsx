@@ -2,7 +2,7 @@
 
 import { AnimationMode, Container, DestroyType, MoveDirection, OutMode, StartValueType } from "@tsparticles/engine";
 import Particles, { initParticlesEngine } from "@tsparticles/react";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo} from "react";
 import { loadSlim } from "@tsparticles/slim";
 import { loadEmittersPlugin } from "@tsparticles/plugin-emitters";
 import { loadEmittersShapeSquare } from "@tsparticles/plugin-emitters-shape-square";
@@ -107,7 +107,7 @@ const HyperspaceComponent = (props: { id: string | undefined; }) => {
                 }
             },
             callbacks: {
-                onUpdate: (engine: any) => {
+                onUpdate: (engine: { particles: { move: { speed: number; }; }[]; }) => {
                     engine.particles.forEach((particle: { move: { speed: number; }; }) => {
                         // Increase speed over time (adjust 0.01 as needed)
                         particle.move.speed += 0.1;
