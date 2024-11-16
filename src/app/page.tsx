@@ -1,26 +1,35 @@
 "use client"
 
-import HyperspaceComponent from "@/components/hyperspace";
-import { useEffect, useState } from "react";
+import HyperspaceComponent from "@/components/hyperspace"
 
-// const MemoizedParticlesComponent = memo(HyperspaceComponent)
+// import dynamic from "next/dynamic";
+// import { useEffect, useState } from "react";
+
+// // const MemoizedParticlesComponent = memo(HyperspaceComponent)
+
+// const HyperspaceComponent = dynamic(
+//   () => import('@/components/hyperspace'),
+//   { ssr: false }
+// )
 
 export default function Home() {
-  const [isMounted, setIsMounted] = useState(false);
+  // const [isMounted, setIsMounted] = useState(false);
 
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
+  // useEffect(() => {
+  //   setIsMounted(true);
+  // }, []);
 
-  if (!isMounted) {
-    return null;
-  }
+  // if (!isMounted) {
+  //   return null;
+  // }
 
   return (
     <div className="relative min-h-screen overflow-hidden">
+      {/* <main>
+
+      </main> */}
+      <HyperspaceComponent id="hyperspace"/>
       <div className="relative z-10">
-        {/* <MemoizedParticlesComponent id="hyperspace" /> */}
-        <HyperspaceComponent id="hyperspace"/>
         <div className="px-4 absolute text-white top-0 left-0 w-full min-h-screen flex flex-col items-center justify-center">
           <p className="text-white">Welcome to the future</p>
         </div>

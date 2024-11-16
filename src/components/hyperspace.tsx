@@ -2,7 +2,7 @@
 
 import { Container, DestroyType, MoveDirection, OutMode, StartValueType } from "@tsparticles/engine";
 import Particles, { initParticlesEngine } from "@tsparticles/react";
-import { useEffect, useMemo} from "react";
+import { useEffect, useMemo, useState} from "react";
 import { loadSlim } from "@tsparticles/slim";
 import { loadEmittersPlugin } from "@tsparticles/plugin-emitters";
 import { loadEmittersShapeSquare } from "@tsparticles/plugin-emitters-shape-square";
@@ -11,7 +11,7 @@ import { loadBasic } from "@tsparticles/basic";
 
 
 const HyperspaceComponent = (props: { id: string | undefined; }) => {
-    // const [init, setInit] = useState(false)
+    const [init, setInit] = useState(false)
     
     // Runs at the start
     useEffect(() => {
@@ -21,7 +21,9 @@ const HyperspaceComponent = (props: { id: string | undefined; }) => {
             await loadEmittersPlugin(engine, false);
             await loadEmittersShapeSquare(engine, false);
             await loadLifeUpdater(engine, false);
-        })
+        }).then(() => [
+            setInit(true)
+        ])
     }, [])
 
     const particlesLoaded = (container?: Container): Promise<void> => {
@@ -109,7 +111,13 @@ const HyperspaceComponent = (props: { id: string | undefined; }) => {
         []
     )
 
-    return <Particles id={props.id} particlesLoaded={particlesLoaded} options={options} />;
+    return (
+        <>
+            {init && (
+                <Particles id={props.id} particlesLoaded={particlesLoaded} options={options} />
+            )}
+        </>
+    )
 }
 
 export default HyperspaceComponent
