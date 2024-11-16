@@ -21,8 +21,6 @@ const HyperspaceComponent = (props: { id: string | undefined; }) => {
             await loadEmittersShapeSquare(engine, false);
             await loadLifeUpdater(engine, false);
             await loadBasic(engine, false);
-            
-
         })
     }, [])
 
