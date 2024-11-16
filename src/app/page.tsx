@@ -1,7 +1,7 @@
 "use client"
 
 import HyperspaceComponent from "@/components/hyperspace";
-import { memo, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 // const MemoizedParticlesComponent = memo(HyperspaceComponent)
 
