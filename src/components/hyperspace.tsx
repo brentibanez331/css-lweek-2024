@@ -1,6 +1,6 @@
 "use client"
 
-import { AnimationMode, Container, DestroyType, MoveDirection, OutMode, StartValueType } from "@tsparticles/engine";
+import { Container, DestroyType, MoveDirection, OutMode, StartValueType } from "@tsparticles/engine";
 import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { useEffect, useMemo} from "react";
 import { loadSlim } from "@tsparticles/slim";
@@ -12,15 +12,16 @@ import { loadBasic } from "@tsparticles/basic";
 
 const HyperspaceComponent = (props: { id: string | undefined; }) => {
     // const [init, setInit] = useState(false)
+    
 
     useEffect(() => {
         initParticlesEngine(async (engine) => {
             await loadSlim(engine)
-            await loadEmittersPlugin(engine, false)
-            await loadBasic(engine, false);
             await loadEmittersPlugin(engine, false);
             await loadEmittersShapeSquare(engine, false);
             await loadLifeUpdater(engine, false);
+            await loadBasic(engine, false);
+            
 
         })
     }, [])
@@ -44,7 +45,7 @@ const HyperspaceComponent = (props: { id: string | undefined; }) => {
                     value: "#ffffff"
                 },
                 life: {
-                    count: 1,
+                    count: 0,
                     duration: {
                         value: 5
                     }
@@ -65,7 +66,7 @@ const HyperspaceComponent = (props: { id: string | undefined; }) => {
                         speed: 10,
                         startValue: StartValueType.min,
                         destroy: DestroyType.none,
-                        mode: AnimationMode.auto,
+                        // mode: AnimationMode.auto,
                         count: 1
                     }
                 },
@@ -106,19 +107,6 @@ const HyperspaceComponent = (props: { id: string | undefined; }) => {
                     delay: 0.1
                 }
             },
-            callbacks: {
-                onUpdate: (engine: { particles: { move: { speed: number; }; }[]; }) => {
-                    engine.particles.forEach((particle: { move: { speed: number; }; }) => {
-                        // Increase speed over time (adjust 0.01 as needed)
-                        particle.move.speed += 0.1;
-
-                        // Optional: Limit the maximum speed
-                        if (particle.move.speed > 20) { // Set your max speed
-                            particle.move.speed = 20;
-                        }
-                    });
-                },
-            }
         }),
         []
     )
