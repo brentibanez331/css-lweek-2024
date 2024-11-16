@@ -13,14 +13,14 @@ import { loadBasic } from "@tsparticles/basic";
 const HyperspaceComponent = (props: { id: string | undefined; }) => {
     // const [init, setInit] = useState(false)
     
-
+    // Runs at the start
     useEffect(() => {
         initParticlesEngine(async (engine) => {
             await loadSlim(engine)
+            await loadBasic(engine, false);
             await loadEmittersPlugin(engine, false);
             await loadEmittersShapeSquare(engine, false);
             await loadLifeUpdater(engine, false);
-            await loadBasic(engine, false);
         })
     }, [])
 
@@ -43,7 +43,7 @@ const HyperspaceComponent = (props: { id: string | undefined; }) => {
                     value: "#ffffff"
                 },
                 life: {
-                    count: 0,
+                    count: 1,
                     duration: {
                         value: 5
                     }
