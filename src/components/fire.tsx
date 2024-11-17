@@ -6,7 +6,7 @@ import Particles, { initParticlesEngine } from "@tsparticles/react"
 import { loadFull } from "tsparticles"
 import { useEffect, useMemo, useState } from "react"
 
-const FireEffect = (props: any) => {
+const FireEffect = (props: { id: string | undefined }) => {
     const [init, setInit] = useState(false)
 
     // Runs at the start

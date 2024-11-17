@@ -5,7 +5,7 @@ import Particles, { initParticlesEngine } from "@tsparticles/react"
 import { loadFull } from "tsparticles"
 import { useEffect, useMemo, useState } from "react"
 
-const MatrixEffect = (props: any) => {
+const MatrixEffect = (props: { id: string | undefined }) => {
     const [init, setInit] = useState(false)
 
     // Runs at the start

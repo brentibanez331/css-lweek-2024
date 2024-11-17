@@ -58,7 +58,7 @@ const TypingText = ({
     return <span className={className}>{displayedText}</span>;
 };
 
-export default function LoadingPage(passed: string) {
+export default function LoadingPage() {
 
     const router = useRouter();
     const searchParams = useSearchParams()
