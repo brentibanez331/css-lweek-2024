@@ -10,7 +10,7 @@ export default function Failed() {
 
     return (
         <div className="relative min-h-screen overflow-hidden">
-            <FireEffect />
+            <FireEffect id="particles"/>
             <div className="absolute text-white top-0 left-0 w-full min-h-screen flex flex-col items-center justify-center">
                 <p className="text-7xl font-bold mb-4">YOU FAILED</p>
                 <p className="text-3xl text-neutral-300">Would you like to challenge once more?</p>
