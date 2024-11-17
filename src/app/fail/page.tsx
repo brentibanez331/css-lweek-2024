@@ -15,7 +15,7 @@ function FailedContent() {
             <p className="text-3xl text-neutral-300">Would you like to challenge once more?</p>
             <div className="flex space-x-4 mt-10">
                 <Link className="bg-white bg-opacity-25 py-4 w-[200px] text-center text-2xl rounded-md" href={`/${game}`}>Yes</Link>
-                <Link className="border border-neutral-200 py-4 w-[200px] text-center text-2xl rounded-md" href={`/${game}`}>No</Link>
+                <Link className="border border-neutral-200 py-4 w-[200px] text-center text-2xl rounded-md" href={`/admin`}>No</Link>
             </div>
         </div>
     )
