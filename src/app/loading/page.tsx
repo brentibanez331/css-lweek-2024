@@ -2,7 +2,7 @@
 
 import MatrixEffect from "@/components/matrix";
 import { useRouter, useSearchParams } from "next/navigation";
-import { memo, useEffect, useState } from "react";
+import { memo, useEffect, useState, Suspense } from "react";
 
 const MemoizedParticlesComponent = memo(MatrixEffect);
 
@@ -24,8 +24,8 @@ const TypingText = ({
     const [displayedText, setDisplayedText] = useState("");
 
     useEffect(() => {
-        if (!text) { // Check if text is null, if so then return immediately
-            return; // if the text is null, dont execute further
+        if (!text) {
+            return;
         }
         let timeoutId: NodeJS.Timeout;
         let charIndex = 0;
@@ -51,15 +51,14 @@ const TypingText = ({
         return () => {
             clearTimeout(timeoutId)
             clearTimeout(redirectTimeout)
-        }; // Cleanup on unmount/re-render
+        };
     }, [text, typingSpeed, delay, onComplete]);
-
 
     return <span className={className}>{displayedText}</span>;
 };
 
-export default function LoadingPage() {
-
+// Separate component for content that uses useSearchParams
+function LoadingContent() {
     const router = useRouter();
     const searchParams = useSearchParams()
     const status = searchParams.get('status')
@@ -78,40 +77,46 @@ export default function LoadingPage() {
                 router.push(`/fail?game=${game}`);
             }
         } else {
-            // Clear the currently displayed text (set to null or empty string)
             setDisplayedText(null);
 
             setTimeout(() => {
                 setCurrentTextIndex((prevIndex) => prevIndex + 1);
                 setDisplayedText(texts[currentTextIndex + 1]);
-
             }, 300);
         }
     };
 
     return (
-        <div className="relative min-h-screen">
-            <MemoizedParticlesComponent id="particles" />
-            <div className="relative z-10">
-
-                <div
-
-                    className="px-4 absolute text-white top-0 left-0 w-full min-h-screen flex flex-col items-center justify-center"
-                >
-                    <div className=""> {/* Added cursor-pointer */}
-                        <div className="text-6xl text-white opacity-75 transition duration-700 font-bold">
-                            <TypingText
-                                text={displayedText}
-                                delay={300}
-                                typingSpeed={50}
-                                className="font-mono tracking-wider"
-                                onComplete={handleTypingComplete}
-                            />
-                        </div>
+        <div className="relative z-10">
+            <div className="px-4 absolute text-white top-0 left-0 w-full min-h-screen flex flex-col items-center justify-center">
+                <div>
+                    <div className="text-6xl text-white opacity-75 transition duration-700 font-bold">
+                        <TypingText
+                            text={displayedText}
+                            delay={300}
+                            typingSpeed={50}
+                            className="font-mono tracking-wider"
+                            onComplete={handleTypingComplete}
+                        />
                     </div>
                 </div>
             </div>
         </div>
+    );
+}
 
+// Main component with Suspense boundary
+export default function LoadingPage() {
+    return (
+        <div className="relative min-h-screen">
+            <MemoizedParticlesComponent id="particles" />
+            <Suspense fallback={
+                <div className="relative z-10 text-white text-6xl flex items-center justify-center min-h-screen">
+                    Loading...
+                </div>
+            }>
+                <LoadingContent />
+            </Suspense>
+        </div>
     )
 }
