@@ -2,7 +2,6 @@
 
 import GreenFireEffect from "@/components/greenfire";
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
 import { Suspense } from "react";
 
 function SuccessContent() {
