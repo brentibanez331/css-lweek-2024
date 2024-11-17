@@ -17,9 +17,9 @@ import { useState } from "react"
 export default function Home() {
   const [started, setStarted] = useState(false)
 
-  const handleClick = () => {
-    setStarted(true)
-  }
+  // const handleClick = () => {
+  //   setStarted(true)
+  // }
   // const [isMounted, setIsMounted] = useState(false);
 
   // useEffect(() => {

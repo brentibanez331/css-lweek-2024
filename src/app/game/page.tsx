@@ -22,7 +22,7 @@ export default function Game() {
                 </div>
                 
             </div>
-            <div className="absolute bottom-0">Hint</div>
+            <div className="absolute bottom-0 ">Hint</div>
         </div>
     )
 }
