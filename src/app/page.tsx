@@ -15,7 +15,7 @@ import { useState } from "react"
 // )
 
 export default function Home() {
-  const [started, setStarted] = useState(false)
+  // const [started, setStarted] = useState(false)
 
   // const handleClick = () => {
   //   setStarted(true)
@@ -35,7 +35,7 @@ export default function Home() {
       {/* <main>
 
       </main> */}
-      <HyperspaceComponent id="hyperspace" started={started} />
+      <HyperspaceComponent id="hyperspace"/>
       <div className="relative z-10">
         <div className="px-4 absolute text-white top-0 left-0 w-full min-h-screen flex flex-col items-center justify-center">
           <div className="backdrop-filter hover:scale-105 backdrop-blur-md bg-opacity-10 bg-clip-padding bg-gray-400 rounded-lg bg-opacity 20 p-8 border border-neutral-700 ease-in-out duration-500 hover:border-neutral-200 transition">
