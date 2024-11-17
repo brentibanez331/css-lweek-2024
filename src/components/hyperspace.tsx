@@ -10,7 +10,7 @@ import { loadLifeUpdater } from "@tsparticles/updater-life";
 import { loadBasic } from "@tsparticles/basic";
 
 
-const HyperspaceComponent = (props: { id: string | undefined; }) => {
+const HyperspaceComponent = (props: { id: string | undefined; started:boolean}) => {
     const [init, setInit] = useState(false)
     
     // Runs at the start
@@ -93,7 +93,7 @@ const HyperspaceComponent = (props: { id: string | undefined; }) => {
                     }
                 }
             },
-            emitters: {
+            emitters: props.started ? {} : {
                 position: {
                     x: 50,
                     y: 50
@@ -108,7 +108,7 @@ const HyperspaceComponent = (props: { id: string | undefined; }) => {
                 }
             },
         }),
-        []
+        [props.started]
     )
 
     return (
