@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import { Roboto } from "next/font/google"
+import { GameDataProvider } from "@/context/GameDataContext";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -36,7 +37,9 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased ${roboto.className}`}
       >
-        {children}
+        <GameDataProvider>
+          {children}
+        </GameDataProvider>
       </body>
     </html>
   );
