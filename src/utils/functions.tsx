@@ -16,8 +16,11 @@ export const stringToDecimal = (str: string) => {
 
     for (let i = 0; i < str.length; i++) {
         const char = str[i];
-        const charCode = char.charCodeAt(0);
-        decimalString += charCode.toString(); // Concatenate decimal char codes
+        let charCode = char.charCodeAt(0).toString();
+        if(charCode.length <= 2){
+            charCode = "0" + charCode
+        }
+        decimalString += charCode; // Concatenate decimal char codes
     }
 
     return decimalString;
