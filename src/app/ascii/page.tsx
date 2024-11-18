@@ -74,7 +74,7 @@ export default function AsciiGame() {
                            To advance, you need to finish this game 
                         </p> */}
                             <p >
-                                What is the equivalent of this Character in ASCII?
+                                What is the equivalent of this word in ASCII?
                             </p>
                             <p className="text-7xl font-bold">
                                 {asciiTarget}

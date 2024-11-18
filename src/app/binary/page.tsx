@@ -74,7 +74,7 @@ export default function BinaryGame() {
                            To advance, you need to finish this game 
                         </p> */}
                             <p >
-                                What is the equivalent of this Character in Binary?
+                                What is the equivalent of this word in Binary?
                             </p>
                             <p className="text-7xl font-bold">
                                 {binaryTarget}
