@@ -2,14 +2,14 @@
 
 import { useEffect, useState } from "react"
 import Cookies from "js-cookie"
-import { charToBinary, charToDecimal } from "@/utils/functions";
+import { stringToBinary, stringToDecimal } from "@/utils/functions";
 import Link from "next/link";
 
 export default function AdminPage() {
     const [binaryTarget, setBinaryTarget] = useState(() => Cookies.get("binaryTarget") || "A");
     const [asciiTarget, setAsciiTarget] = useState(() => Cookies.get("asciiTarget") || "A");
-    const [binaryAnswer, setBinaryAnswer] = useState(() => charToBinary(binaryTarget) || "")
-    const [asciiAnswer, setAsciiAnswer] = useState(() => charToDecimal(asciiTarget) || "")
+    const [binaryAnswer, setBinaryAnswer] = useState(() => stringToBinary(binaryTarget) || "")
+    const [asciiAnswer, setAsciiAnswer] = useState(() => stringToDecimal(asciiTarget) || "")
 
     const [activeTab, setActiveTab] = useState('binary')
 
@@ -38,13 +38,21 @@ export default function AdminPage() {
     const updateBinaryTarget = (value: string) => {
         Cookies.set("binaryTarget", value);
         setBinaryTarget(value); // Update the component's state
-        setBinaryAnswer(charToBinary(value))
+        setBinaryAnswer(stringToBinary(value))
     };
 
     const updateAsciiTarget = (value: string) => {
         Cookies.set("asciiTarget", value);
         setAsciiTarget(value);  // Update the component's state
-        setAsciiAnswer(charToDecimal(value))
+        setAsciiAnswer(stringToDecimal(value))
+    };
+
+    const formatBinary = (binary: string): string => {
+        let formattedBinary = "";
+        for (let i = 0; i < binary.length; i += 8) {
+            formattedBinary += binary.substring(i, i + 8) + "\n"; // Add newline every 8 characters
+        }
+        return formattedBinary;
     };
 
     return (
@@ -73,13 +81,14 @@ export default function AdminPage() {
                             <input
                                 value={binaryTarget}
                                 onChange={(e) => { updateBinaryTarget(e.target.value) }}
-                                maxLength={1}
+
                                 className="rounded-lg py-2 text-black text-center" />
-                            <div className="text-center mt-10">
-                                <p className="text-neutral-500">Decimal Equivalent</p>
-                                <p className="text-3xl">{binaryAnswer}</p>
-                            </div> 
-                            
+
+
+                        </div>
+                        <div className="text-center mt-10">
+                            <p className="text-neutral-500">Decimal Equivalent</p>
+                            <p className="text-xl w-[300px] whitespace-pre-wrap">{formatBinary(binaryAnswer)}</p>
                         </div>
                         <Link href={"/binary"} className="px-2 py-2 rounded-md bg-white text-black">Click here to play BINARY</Link>
                     </div>
@@ -93,13 +102,12 @@ export default function AdminPage() {
                             <input
                                 value={asciiTarget}
                                 onChange={(e) => updateAsciiTarget(e.target.value)}
-                                maxLength={1}
                                 className="rounded-lg py-2 text-black text-center" />
                             <div className="text-center mt-10">
                                 <p className="text-neutral-500">Decimal Equivalent</p>
                                 <p className="text-3xl">{asciiAnswer}</p>
                             </div> {/* Add your logic to display the answer */}
-                            
+
                         </div>
                         <Link href={"/ascii"} className="px-2 py-2 rounded-md bg-white text-black">Click here to play ASCII</Link>
                     </div>

@@ -65,7 +65,7 @@ function LoadingContent() {
     const game = searchParams.get('game')
 
     const [currentTextIndex, setCurrentTextIndex] = useState(0);
-    const texts = ["CALCULATING...", "Hacking the Interlink", "Bypassing Security", "Establishing Connection"];
+    const texts = ["Calibrating future", "Validating events", "Establishing connection"];
 
     const [displayedText, setDisplayedText] = useState<string | null>(texts[0]);
 

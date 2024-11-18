@@ -3,7 +3,7 @@
 import HyperspaceComponent from "@/components/hyperspace";
 import { memo, useEffect, useState } from "react"
 import Cookies from "js-cookie";
-import { charToBinary } from "@/utils/functions";
+import { stringToBinary } from "@/utils/functions";
 import { useRouter } from "next/navigation";
 
 const MemoizedParticlesComponent = memo(HyperspaceComponent);
@@ -17,7 +17,7 @@ export default function BinaryGame() {
 
 
     useEffect(() => {
-        setBinaryTargetAnswer(charToBinary(binaryTarget))
+        setBinaryTargetAnswer(stringToBinary(binaryTarget))
 
         const handleCookieChange = () => {
             setBinaryTarget(Cookies.get("binaryTarget") || "");

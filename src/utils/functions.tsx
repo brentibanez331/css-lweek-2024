@@ -1,10 +1,24 @@
-export const charToBinary = (char: string) => {
+export const stringToBinary = (str: string) => {
+    let binaryString = "";
 
-    const charCode = char.charCodeAt(0);
-    return charCode.toString(2).padStart(8, '0');
+    for (let i = 0; i < str.length; i++) {
+        const char = str[i];
+        const charCode = char.charCodeAt(0);
+        binaryString += charCode.toString(2).padStart(8, '0'); // Concatenate binary for each char
+    }
+
+    return binaryString;
 }
 
-export const charToDecimal = (char: string) => {
+export const stringToDecimal = (str: string) => {
 
-    return char.charCodeAt(0).toString()
+    let decimalString = "";
+
+    for (let i = 0; i < str.length; i++) {
+        const char = str[i];
+        const charCode = char.charCodeAt(0);
+        decimalString += charCode.toString(); // Concatenate decimal char codes
+    }
+
+    return decimalString;
 }

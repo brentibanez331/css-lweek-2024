@@ -3,7 +3,7 @@
 import HyperspaceComponent from "@/components/hyperspace";
 import { memo, useEffect, useState } from "react"
 import Cookies from "js-cookie";
-import { charToDecimal } from "@/utils/functions";
+import { stringToDecimal } from "@/utils/functions";
 import { useRouter } from "next/navigation";
 
 const MemoizedParticlesComponent = memo(HyperspaceComponent);
@@ -17,7 +17,7 @@ export default function AsciiGame() {
 
 
     useEffect(() => {
-        setAsciiTargetAnswer(charToDecimal(asciiTarget))
+        setAsciiTargetAnswer(stringToDecimal(asciiTarget))
 
         const handleCookieChange = () => {
             setAsciiTarget(Cookies.get("asciiTarget") || "");
